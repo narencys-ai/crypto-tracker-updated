@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <link rel="stylesheet" href="/src/style.css" />
+
+    <title>CryptoTrack</title>
+  </head>
+
+  <body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="top-header">
+
+      <div class="brand">
+
+        <div class="brand-icon">₿</div>
+
+        <div>
+          <h1>CryptoTrack</h1>
+          <p>Smart Market Dashboard</p>
+        </div>
+
+      </div>
+
+      <div class="market-status">
+        <span class="status-dot"></span>
+        Market Live
+      </div>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="dashboard">
+
+
+      <!-- =========================
+           HERO
+      ========================== -->
+
+      <section class="hero-section">
+
+        <div>
+
+          <p class="eyebrow">
+            LIVE CRYPTO MARKET
+          </p>
+
+          <h2>
+            Track the market.
+            <br />
+            Make smarter decisions.
+          </h2>
+
+          <p class="hero-description">
+            Real-time cryptocurrency prices,
+            market movements and trends.
+          </p>
+
+        </div>
+
+        <div class="hero-badge">
+          <span>●</span>
+          Live Data
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           MARKET STATS
+      ========================== -->
+
+      <section class="stats-grid">
+
+        <div class="stat-card">
+
+          <span class="stat-label">
+            Market Status
+          </span>
+
+          <strong class="stat-value">
+            LIVE
+          </strong>
+
+          <small>
+            Real-time updates
+          </small>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <span class="stat-label">
+            Market Sentiment
+          </span>
+
+          <strong
+            id="marketSentiment"
+            class="stat-value"
+          >
+            NEUTRAL
+          </strong>
+
+          <small>
+            Based on market movement
+          </small>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <span class="stat-label">
+            Last Updated
+          </span>
+
+          <strong
+            id="lastUpdate"
+            class="stat-value"
+          >
+            Just now
+          </strong>
+
+          <small>
+            Automatic refresh enabled
+          </small>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           LIVE COINS
+      ========================== -->
+
+      <section class="section-block">
+
+        <div class="section-heading">
+
+          <div>
+
+            <p class="section-label">
+              LIVE PRICES
+            </p>
+
+            <h2>
+              Popular Cryptocurrencies
+            </h2>
+
+            <p>
+              Real-time price and 24-hour change
+            </p>
+
+          </div>
+
+          <button
+            id="refreshBtn"
+            class="refresh-btn"
+          >
+            ↻ Refresh
+          </button>
+
+        </div>
+
+
+        <div
+          id="cryptoContainer"
+          class="crypto-grid"
+        >
+
+          <div class="crypto-card">
+            Loading...
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           BITCOIN CHART
+      ========================== -->
+
+      <section class="section-block">
+
+        <div class="section-heading">
+
+          <div>
+
+            <p class="section-label">
+              PRICE ANALYSIS
+            </p>
+
+            <h2>
+              Bitcoin Price Chart
+            </h2>
+
+            <p>
+              Bitcoin price movement over the last 24 hours
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="chart-card">
+
+          <canvas
+            id="bitcoinChart"
+          ></canvas>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           MARKET MOVERS
+      ========================== -->
+
+      <section class="section-block movers-section">
+
+        <div class="section-heading">
+
+          <div>
+
+            <p class="section-label">
+              MARKET MOVERS
+            </p>
+
+            <h2>
+              Market Movers
+            </h2>
+
+            <p>
+              Top gainers and losers in the last 24 hours
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="movers-grid">
+
+
+          <div class="mover-card">
+
+            <h3>
+              🚀 Top Gainers
+            </h3>
+
+            <div id="topGainers">
+              Loading...
+            </div>
+
+          </div>
+
+
+          <div class="mover-card">
+
+            <h3>
+              📉 Top Losers
+            </h3>
+
+            <div id="topLosers">
+              Loading...
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           TOP 10 CRYPTO
+      ========================== -->
+
+      <section class="section-block top10-section">
+
+        <div class="section-heading">
+
+          <div>
+
+            <p class="section-label">
+              MARKET RANKING
+            </p>
+
+            <h2>
+              Top 10 Cryptocurrencies
+            </h2>
+
+            <p>
+              Ranked by market capitalization
+            </p>
+
+          </div>
+
+
+          <button
+            id="top10RefreshBtn"
+            class="refresh-btn"
+          >
+            ↻ Refresh Top 10
+          </button>
+
+
+          <button
+            id="exportCsvBtn"
+            class="refresh-btn"
+          >
+            📥 Export CSV
+          </button>
+
+        </div>
+
+
+        <!-- =========================
+             SEARCH
+        ========================== -->
+
+        <div class="search-wrapper">
+
+          <span class="search-icon">
+            🔍
+          </span>
+
+          <input
+            id="top10Search"
+            type="text"
+            placeholder="Search cryptocurrency..."
+          />
+
+        </div>
+
+
+        <!-- =========================
+             TOP 10 TABLE
+        ========================== -->
+
+        <div class="top10-table">
+
+          <div class="top10-header top10-grid">
+
+            <span>#</span>
+
+            <span>COIN</span>
+
+            <span>PRICE</span>
+
+            <span>24H</span>
+
+            <span>MARKET CAP</span>
+
+            <span>VOLUME</span>
+
+          </div>
+
+
+          <div class="top10-layout">
+
+            <div class="top10-table-panel">
+
+              <div id="top10Container">
+
+                <div class="top10-loading">
+                  Loading Top 10 cryptocurrencies...
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           YOUR WATCHLIST
+      ========================== -->
+
+      <section class="watchlist-section">
+
+        <div class="section-label">
+          ⭐ MY WATCHLIST
+        </div>
+
+        <h2>
+          Favourite Cryptocurrencies
+        </h2>
+
+        <p class="section-subtitle">
+          Track your favourite coins in one place
+        </p>
+
+
+        <div
+          id="watchlistContainer"
+          class="watchlist-container"
+        >
+
+          <div class="watchlist-empty">
+            No coins added to watchlist yet ⭐
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           FOOTER
+      ========================== -->
+
+      <footer class="footer">
+
+        <div>
+
+          <strong>
+            CryptoTrack
+          </strong>
+
+          <p>
+            Smart Market Dashboard
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <p>
+            Data updates automatically
+          </p>
+
+          <p>
+            Built for cryptocurrency market analysis
+          </p>
+
+        </div>
+
+      </footer>
+
+
+    </main>
+
+
+    <!-- =========================
+         TYPESCRIPT
+    ========================== -->
+
+    <script
+      type="module"
+      src="/src/main.ts"
+    ></script>
+
+  </body>
+</html>

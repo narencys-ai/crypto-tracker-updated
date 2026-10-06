@@ -1,0 +1,585 @@
+/* ==========================================
+   CryptoTrack - Professional Dark Dashboard
+   ========================================== */
+
+:root {
+  --bg: #070b14;
+  --panel: #0d1320;
+  --panel-hover: #121a2a;
+  --border: #1c2638;
+
+  --text: #f4f7fb;
+  --muted: #8490a5;
+
+  --green: #20d68b;
+  --red: #ff5c6c;
+  --yellow: #f5b942;
+  --blue: #5b8cff;
+  --purple: #8b6cff;
+
+  --radius: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  background:
+    radial-gradient(
+      circle at 15% 0%,
+      rgba(91, 140, 255, 0.12),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(139, 108, 255, 0.1),
+      transparent 28%
+    ),
+    var(--bg);
+
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ==========================================
+   Scrollbar
+   ========================================== */
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #26334a;
+  border-radius: 10px;
+}
+
+/* ==========================================
+   Main Layout
+   ========================================== */
+
+main,
+.dashboard,
+.container {
+  width: min(1400px, 94%);
+  margin: auto;
+}
+
+section {
+  margin-bottom: 30px;
+}
+
+/* ==========================================
+   Header
+   ========================================== */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  background: rgba(7, 11, 20, 0.78);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+header > div,
+.navbar,
+.header-inner {
+  width: min(1400px, 94%);
+  margin: auto;
+}
+
+.logo {
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+/* ==========================================
+   Buttons
+   ========================================== */
+
+button {
+  font-family: inherit;
+}
+
+button:not(.watch-btn) {
+  border: 1px solid var(--border);
+  background: #111927;
+  color: var(--text);
+
+  padding: 10px 16px;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+button:not(.watch-btn):hover {
+  background: #182235;
+  border-color: #30415e;
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* ==========================================
+   Search
+   ========================================== */
+
+input[type="search"],
+input[type="text"] {
+  width: 100%;
+
+  background: #0d1421;
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  padding: 13px 16px;
+
+  color: var(--text);
+  outline: none;
+
+  transition: 0.2s ease;
+}
+
+input::placeholder {
+  color: #59657a;
+}
+
+input:focus {
+  border-color: var(--blue);
+
+  box-shadow:
+    0 0 0 3px rgba(91, 140, 255, 0.12);
+}
+
+/* ==========================================
+   Section Titles
+   ========================================== */
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: clamp(30px, 5vw, 48px);
+  letter-spacing: -1.5px;
+}
+
+h2 {
+  font-size: 23px;
+  letter-spacing: -0.5px;
+}
+
+h3 {
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+
+  margin-bottom: 16px;
+}
+
+/* ==========================================
+   Crypto Cards
+   ========================================== */
+
+#cryptoContainer,
+#top10Container,
+#favoritesContainer {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(250px, 1fr));
+
+  gap: 16px;
+}
+
+.crypto-card {
+  position: relative;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.015)
+    );
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius);
+
+  padding: 20px;
+
+  min-height: 180px;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.crypto-card::before {
+  content: "";
+
+  position: absolute;
+
+  width: 120px;
+  height: 120px;
+
+  right: -50px;
+  top: -50px;
+
+  background: rgba(91, 140, 255, 0.08);
+
+  border-radius: 50%;
+
+  filter: blur(20px);
+}
+
+.crypto-card:hover {
+  transform: translateY(-5px);
+
+  background: var(--panel-hover);
+
+  border-color: #2d3b55;
+
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* ==========================================
+   Coin Info
+   ========================================== */
+
+.coin-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 22px;
+}
+
+.coin-info span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.coin-icon {
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #263d70,
+      #161f35
+    );
+
+  border: 1px solid #34486d;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  color: #fff;
+}
+
+/* ==========================================
+   Price
+   ========================================== */
+
+.coin-price {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.7px;
+
+  margin-bottom: 7px;
+}
+
+.coin-change {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.positive {
+  color: var(--green);
+}
+
+.negative {
+  color: var(--red);
+}
+
+/* ==========================================
+   Favorite Star
+   ========================================== */
+
+.watch-btn {
+  position: absolute;
+
+  right: 15px;
+  top: 15px;
+
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid transparent;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  color: #657188;
+
+  font-size: 19px;
+
+  cursor: pointer;
+
+  z-index: 10;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.watch-btn:hover {
+  color: var(--yellow);
+
+  background: rgba(245, 185, 66, 0.1);
+
+  border-color: rgba(245, 185, 66, 0.25);
+
+  transform: scale(1.08);
+}
+
+.watch-btn.is-favorite {
+  color: var(--yellow);
+
+  background: rgba(245, 185, 66, 0.12);
+
+  border-color: rgba(245, 185, 66, 0.3);
+
+  box-shadow:
+    0 0 18px rgba(245, 185, 66, 0.12);
+}
+
+/* ==========================================
+   Rank
+   ========================================== */
+
+.coin-rank {
+  position: absolute;
+
+  top: 20px;
+  right: 58px;
+
+  color: var(--muted);
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* ==========================================
+   Market Items
+   ========================================== */
+
+.market-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 0;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.market-item:last-child {
+  border-bottom: none;
+}
+
+.market-item div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.market-item small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* ==========================================
+   Panels
+   ========================================== */
+
+.panel,
+.card,
+.dashboard-card {
+  background: rgba(13, 19, 32, 0.8);
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius);
+
+  padding: 22px;
+
+  backdrop-filter: blur(10px);
+}
+
+/* ==========================================
+   Loading
+   ========================================== */
+
+.top10-loading,
+.top10-error,
+.favorites-empty {
+  grid-column: 1 / -1;
+
+  padding: 40px 20px;
+
+  text-align: center;
+
+  color: var(--muted);
+
+  background: var(--panel);
+
+  border: 1px dashed var(--border);
+
+  border-radius: var(--radius);
+}
+
+/* ==========================================
+   Market Sentiment
+   ========================================== */
+
+#marketSentiment {
+  font-weight: 800;
+  font-size: 16px;
+}
+
+/* ==========================================
+   Chart
+   ========================================== */
+
+#bitcoinChart {
+  width: 100%;
+  max-width: 100%;
+
+  background: #0b111d;
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius);
+
+  padding: 10px;
+}
+
+/* ==========================================
+   Top 10
+   ========================================== */
+
+.top10-card {
+  min-height: 210px;
+}
+
+.coin-market-cap {
+  margin-top: 14px;
+
+  color: var(--muted);
+
+  font-size: 12px;
+}
+
+/* ==========================================
+   Responsive
+   ========================================== */
+
+@media (max-width: 768px) {
+  main,
+  .dashboard,
+  .container {
+    width: 92%;
+  }
+
+  #cryptoContainer,
+  #top10Container,
+  #favoritesContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .crypto-card {
+    min-height: 165px;
+  }
+
+  .coin-price {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 30px;
+  }
+
+  .crypto-card {
+    padding: 17px;
+  }
+
+  .coin-icon {
+    width: 40px;
+    height: 40px;
+  }
+}
